@@ -54,6 +54,12 @@ users = {
   }
 }
 
+# users  hash
+# user  hash
+# lottery numbers array
+# pets array of hashes
+# pet hash
+
 #1. Get Jonathan's Twitter handle (i.e. the string `"jonnyt"`)
 p users["Jonathan"][:twitter]
 
@@ -67,22 +73,59 @@ p users["Erik"][:lottery_numbers]
 p users["Avril"][:pets][0][:species]
 
 #5. Get the smallest of Erik's lottery numbers
-p users["Erik"][:lottery_numbers].min
+p users["Erik"][:lottery_numbers].min()
+
+#sorted_list = users["Erik"][:lottery_numbers].sorted
+#p sorted_list.first()
 
 #6. Return an array of Avril's lottery numbers that are even
+
+new_array = []
 position = 0
 while position < users["Avril"][:lottery_numbers].length
   if users["Avril"][:lottery_numbers][position] % 2 == 0
-    p users["Avril"][:lottery_numbers][position]
+    new_array.push(users["Avril"][:lottery_numbers][position])
   end
   position = position + 1
 end
+p new_array
 
+# OR (good practice here or below)
+even_numbers = []
+for number in users["Avril"][:lottery_numbers]
+if number % 2 == 0
+  even_numbers.push(number)
+end
+end
+p even_numbers
+
+ # OR
+even_numbers = []
+for number in users["Avril"][:lottery_numbers]
+if number.even?()
+  even_numbers.push(number)
+end
+end
+p even_numbers
+
+#OR
+
+even_numbers = []
+for number in users["Avril"][:lottery_numbers]
+  even_numbers.push(number) if number.even?()
+end
+end
+p even_numbers
+
+# p users["Avril"][:lottery_numbers].select {|number| number%2 == 0}
 
 
 
 # 7. Erik is one lottery number short! Add the number `7` to be included in his lottery numbers
 p users["Erik"][:lottery_numbers].push(7)
+
+#OR
+p users["Erik"][:lottery_numbers] << 7
 
 # 8. Change Erik's hometown to Edinburgh
 users["Erik"][:home_town] = "Edinburgh"
@@ -90,8 +133,23 @@ p users["Erik"][:home_town]
 # 9. Add a pet dog to Erik called "Fluffy"
 
 users["Erik"][:pets] << {:name => "fluffy",:species =>"dog"}
-p users["Erik"][:pets]
+# p users["Erik"][:pets]
+
+dog {
+name:  "fluffy",
+species: "dog"
+  }
+  users["Erik"][:pets] << dog
 
 # 10. Add another person to the users hash
 users["John"] = []
- puts users
+ # puts users
+
+users["Dave"] = {
+
+  twitter: "Dave_123",
+  lottery_numbers: [1, 2, 3, 4, 5],
+  home_town: "Glasgow"
+  pets:[]
+}
+p users

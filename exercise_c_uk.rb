@@ -13,14 +13,29 @@ united_kingdom.push(ni_hash)
 
 p united_kingdom
 
+
+#OR
+
+ni_hash = { name: "Northern Ireland", population: 1811000, capital: "Belfast"}
+united_kingdom.push( {
+  name: "Northern Ireland",
+  population: 1811000,
+  capital: "Belfast"
+}
+)
+
+p united_kingdom
+
 # 3. Use a loop to print the names of all the countries in the UK.
 for country in united_kingdom
 p country[:name]
 end
 # 4. Use a loop to find the total population of the UK.
 
-population = 0
+total_pop = 0
 for country in united_kingdom
-  population = population + country[:population]
+#  population = population + country[:population]
+  total_pop += country[:population]
 end
-p population
+# p population
+p "The total pop is #{total}" #this interpolates with #{}
